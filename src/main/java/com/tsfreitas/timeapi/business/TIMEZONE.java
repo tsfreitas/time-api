@@ -1,4 +1,4 @@
-package com.tsfreitas;
+package com.tsfreitas.timeapi.business;
 
 public enum TIMEZONE {
 
