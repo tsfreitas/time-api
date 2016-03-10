@@ -15,8 +15,8 @@ public class TimezoneTest {
 		// GIVEN
 		String countryCode = "AU";
 		String zoneName = "Australia/Melbourne";
-		Long gmtOffset = 39600l;
-		Long timestamp = 1457614013l;
+		String gmtOffset = "39600";
+		String timestamp = "1457614013";
 
 		// WHEN
 		Timezone timezone = new Timezone(zoneName, countryCode, gmtOffset, timestamp);

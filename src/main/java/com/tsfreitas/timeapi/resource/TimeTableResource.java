@@ -9,6 +9,6 @@ import retrofit2.http.Query;
 public interface TimeTableResource {
 
 	@GET("/?format=json")
-	public Call<Map<String, Object>> getTimeZone(@Query("zone") String zone);
+	public Call<Map<String, String>> getTimeZone(@Query("zone") String zone);
 
 }

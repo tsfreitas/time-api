@@ -9,16 +9,16 @@ public class Timezone {
 	private String offset;
 	private String timeDate;
 
-	public Timezone(String zoneName, String countryCode, Long gmtOffset, Long timestamp) {
+	public Timezone(String zoneName, String countryCode, String gmtOffset, String timestamp) {
 		this.zoneName = zoneName;
 		this.countryCode = countryCode;
-		formatOffset(gmtOffset);
-		formatDate(timestamp);
+		formatOffset(Long.valueOf(gmtOffset));
+		formatDate(Long.valueOf(timestamp));
 	}
 
 	private void formatOffset(Long gmtOffset) {
 		long hours = gmtOffset / 3600;
-		String sign = hours >= 0 ? "+" : "-";
+		String sign = hours >= 0 ? "+" : "";
 
 		offset = String.format("GMT%s%d", sign, hours);
 	}

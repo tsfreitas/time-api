@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.tsfreitas.timeapi.model.Timezone;
 import com.tsfreitas.timeapi.service.TimezoneService;
 
 @RestController
-@RequestMapping(name = "/timezone", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class TimezoneRest {
 
 	private TimezoneService timezoneService;
@@ -21,8 +21,8 @@ public class TimezoneRest {
 		this.timezoneService = timezoneService;
 	}
 
-	@RequestMapping("/{zone}/{area}")
-	public Object getTimezone(@PathVariable String zone, @PathVariable String area) throws IOException {
+	@RequestMapping(value="/timezone/{zone}/{area}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public Timezone getTimezone(@PathVariable String zone, @PathVariable String area) throws IOException {
 		return timezoneService.getTimeZone(zone, area);
 	}
 

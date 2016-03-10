@@ -17,8 +17,8 @@ import retrofit2.converter.jackson.JacksonConverterFactory;
 public class RetrofitConfig {
 
 	@Bean
-	public TimeTableResource getTimeTable(@Value("endpoint.timetable") String endpoint,
-			@Value("timetable.key") String key) {
+	public TimeTableResource getTimeTable(@Value("${endpoint.timetable}") String endpoint,
+			@Value("${timetable.key}") String key) {
 
 		OkHttpClient client = new OkHttpClient.Builder().addInterceptor(getInterceptor(key)).build();
 

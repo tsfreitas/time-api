@@ -11,32 +11,28 @@ import com.tsfreitas.timeapi.resource.TimeTableResource;
 
 @Service
 public class TimezoneService {
-	
+
 	private TimeTableResource timeTableResource;
-	
-	private static final String TIMEZONE_PATTERN ="%s/%s";
-	
+
+	private static final String TIMEZONE_PATTERN = "%s/%s";
+
 	@Autowired
 	public TimezoneService(TimeTableResource timeTableResource) {
 		this.timeTableResource = timeTableResource;
 	}
-	
+
 	public Timezone getTimeZone(String region, String area) throws IOException {
-		String timezone = String.format(TIMEZONE_PATTERN, region,area);
-		
-		
-		Map<String, Object> makeRequest = makeRequest(timezone);
-		
-		
-		
-		return new Timezone(makeRequest.get(makeRequest.get(key)), countryCode, gmtOffset, timestamp)
-		
-		
-	}
-	
-	private Map<String, Object> makeRequest(String timezone) throws IOException {
-		return timeTableResource.getTimeZone(timezone).execute().body();
+		String timezone = String.format(TIMEZONE_PATTERN, region, area);
+
+		Map<String, String> makeRequest = makeRequest(timezone);
+
+		return new Timezone(makeRequest.get("zoneName"), makeRequest.get("countryCode"), makeRequest.get("gmtOffset"),
+				makeRequest.get("timestamp"));
+
 	}
 
+	private Map<String, String> makeRequest(String timezone) throws IOException {
+		return timeTableResource.getTimeZone(timezone).execute().body();
+	}
 
 }
