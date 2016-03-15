@@ -46,9 +46,6 @@
 			<version>2.0.0-beta4</version>
 		</dependency>
 
-
-
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -62,20 +59,30 @@
 	</dependencies>
 
 	<build>
+		<finalName>timeApi</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<configuration>
-					<finalName>timeApi</finalName>
-				</configuration>
+
 			</plugin>
 			<plugin>
 				<groupId>com.spotify</groupId>
 				<artifactId>docker-maven-plugin</artifactId>
-				<version>0.2.3</version>
+				<version>0.4.3</version>
 				<configuration>
-					<imageName>${project.artifactId}</imageName>
+					<imageName>docker-registry.com:5000/${project.artifactId}</imageName>
+					<dockerDirectory>docker</dockerDirectory>
+					<imageTags>
+						<imageTag>${project.version}</imageTag>
+					</imageTags>
+					<resources>
+						<resource>
+							<targetPath>/</targetPath>
+							<directory>${project.build.directory}</directory>
+             				<include>${project.build.finalName}.jar</include>
+						</resource>
+					</resources>
 				</configuration>
 			</plugin>
 		</plugins>
