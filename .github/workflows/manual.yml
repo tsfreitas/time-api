@@ -1,0 +1,19 @@
+name: Manual workflow
+
+on:
+  workflow_dispatch:
+    inputs:
+      environemtn:
+        description: 'Person to greet'
+        default: 'development'
+        required: true
+
+env:
+  MY_ENV_VAR: "default_value"
+  
+jobs:
+  greet:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Original value
+      run: echo "ORIGINAL $MY_ENV_VAR"
