@@ -10,10 +10,17 @@ on:
 
 env:
   MY_ENV_VAR: "default_value"
+  OTHER_VALUE: "not changed"
   
 jobs:
   greet:
     runs-on: ubuntu-latest
     steps:
     - name: Original value
-      run: echo "ORIGINAL $MY_ENV_VAR"
+      run: echo "ORIGINAL $MY_ENV_VAR -- $GITHUB_ENV"
+    - name: Trying to change
+      run: echo "MY_ENV_VAR=altered" >> $GITHUB_ENV
+    - name: Altered value
+      run: echo "ALTERED $MY_ENV_VAR"
+    - name: All values
+      run: echo "ALTERED $GITHUB_ENV"
